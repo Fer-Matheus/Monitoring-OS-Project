@@ -4,7 +4,7 @@ printf "\n Digite o caminho do diretório que deseja monitor, ou apenas um nome 
 read dir
 
 printf "Verificando todas as dependencias"
-./config/installDependency
+./config/installDependency.sh
 
 if test -e $dir; then 
     printf ""
@@ -12,14 +12,10 @@ else
     mkdir ${dir}
 fi 
 
-# touch iwatchConfig.xml
-# echo "<config>" >>
-
 clear
 
-rsync -ua --delete ${dir}/ ${dir}/* /home/matheus/workspace/backup
+./config/auditConfig.sh $dir
+./utils/execSync.sh $dir
 
 # Ponto de configuração do iwatch
-iwatch -r -c "rsync -uah --delete ${dir}/ ${dir}/* /home/matheus/workspace/backup" -e attrib,modify,create,delete,delete_self,move,moved_from,moved_to $dir >> logs/${dir}
-
-ls -la $dir
+iwatch -r -c "./utils/execSync.sh ${dir} | (echo -n;sleep 5;./utils/createLog.sh ${dir})" -e attrib,modify,create,delete,delete_self,move,moved_from,moved_to $dir >> logs/temp 
