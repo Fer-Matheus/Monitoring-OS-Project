@@ -1,7 +1,7 @@
 # Monitoring OS Project.
-### The source code of a monitor directories and/or files, choosed by the current user. 
+### O código fonte de um monitorador de diretórios/arquivos, escolhidos pelo usuário atual. 
 \
-Team:
+Equipe:
 * Alberto Luian - alberto.luian@aluno.uece.br
 * Alicia Paiva - alicia.paiva@aluno.uece.br
 * Lucas Monteiro - lucas.amaral@aluno.uece.br
